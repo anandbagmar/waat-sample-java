@@ -1,5 +1,6 @@
 package com.thoughtworks.webanalyticsautomation.samples;
 
+import com.thoughtworks.webanalyticsautomation.Controller;
 import com.thoughtworks.webanalyticsautomation.Engine;
 import com.thoughtworks.webanalyticsautomation.Result;
 import com.thoughtworks.webanalyticsautomation.Status;
@@ -67,7 +68,7 @@ public class OmnitureDebuggerSampleTest extends TestBase {
         assertNotNull(verificationResult.getVerificationStatus(), "Verification status should NOT be NULL");
         assertNotNull(verificationResult.getListOfErrors(), "Failure details should NOT be NULL");
         logVerificationErrors(verificationResult);
-        Assert.assertEquals(verificationResult.getVerificationStatus(), Status.PASS, "Verification status should be PASS");
+        assertEquals(verificationResult.getVerificationStatus(), Status.PASS, "Verification status should be PASS");
         assertEquals(verificationResult.getListOfErrors().size(), 0, "Failure details should be empty");
     }
 

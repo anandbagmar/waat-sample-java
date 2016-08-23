@@ -1,4 +1,4 @@
-package test.java.com.thoughtworks.webanalyticsautomation.samples;
+package com.thoughtworks.webanalyticsautomation.samples;
 
 import com.thoughtworks.webanalyticsautomation.scriptrunner.ScriptRunner;
 

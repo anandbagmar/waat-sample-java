@@ -1,4 +1,4 @@
-package test.java.com.thoughtworks.webanalyticsautomation.common;
+package com.thoughtworks.webanalyticsautomation.common;
 
 /**
  * Created by: Anand Bagmar
@@ -11,7 +11,6 @@ package test.java.com.thoughtworks.webanalyticsautomation.common;
 
 import com.thoughtworks.webanalyticsautomation.Engine;
 import com.thoughtworks.webanalyticsautomation.Result;
-import com.thoughtworks.webanalyticsautomation.common.Utils;
 import com.thoughtworks.webanalyticsautomation.inputdata.InputFileType;
 import com.thoughtworks.webanalyticsautomation.plugins.WebAnalyticTool;
 import org.apache.log4j.Logger;

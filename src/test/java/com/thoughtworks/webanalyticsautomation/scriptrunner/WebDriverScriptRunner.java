@@ -1,6 +1,5 @@
-package test.java.com.thoughtworks.webanalyticsautomation.scriptrunner;
+package com.thoughtworks.webanalyticsautomation.scriptrunner;
 
-import com.thoughtworks.webanalyticsautomation.scriptrunner.ScriptRunner;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

@@ -1,4 +1,4 @@
-package test.java.com.thoughtworks.webanalyticsautomation.runUtils;
+package com.thoughtworks.webanalyticsautomation.runUtils;
 
 import org.apache.log4j.Logger;
 

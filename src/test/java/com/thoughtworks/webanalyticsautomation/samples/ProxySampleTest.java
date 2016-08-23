@@ -1,19 +1,19 @@
-package test.java.com.thoughtworks.webanalyticsautomation.samples;
+package com.thoughtworks.webanalyticsautomation.samples;
 
 import com.thoughtworks.webanalyticsautomation.Controller;
 import com.thoughtworks.webanalyticsautomation.Engine;
 import com.thoughtworks.webanalyticsautomation.Result;
 import com.thoughtworks.webanalyticsautomation.Status;
 import com.thoughtworks.webanalyticsautomation.common.BROWSER;
+import com.thoughtworks.webanalyticsautomation.common.TestBase;
+import com.thoughtworks.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import test.java.com.thoughtworks.webanalyticsautomation.common.TestBase;
 import com.thoughtworks.webanalyticsautomation.common.Utils;
 import com.thoughtworks.webanalyticsautomation.inputdata.InputFileType;
 import com.thoughtworks.webanalyticsautomation.plugins.WebAnalyticTool;
-import test.java.com.thoughtworks.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;

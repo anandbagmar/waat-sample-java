@@ -1,7 +1,8 @@
-package com.thoughtworks.webanalyticsautomation.scriptrunner.helper;
+package test.java.com.thoughtworks.webanalyticsautomation.scriptrunner.helper;
 
 import com.thoughtworks.webanalyticsautomation.common.BROWSER;
 import org.apache.log4j.Logger;
+import org.junit.Assume;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.SkipException;
+//import org.testng.SkipException;
 
 /**
  * Created by: Anand Bagmar
@@ -36,13 +37,16 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             instantiateFireFoxDriver(capabilities);
         }
-        else if (browser.equals(BROWSER.iehta)) {
+        else if (browser.equals(BROWSER.iehta))
+        {
             if (!os.contains("win")) {
-                throw new SkipException("Skipping this test as Internet Explorer browser is NOT available on " + os);
+                logger.info("Skipping this test as Internet Explorer browser is NOT available on " + os);
+                Assume.assumeTrue(true);
             }
             driver = new InternetExplorerDriver();
             driver.get(BASE_URL);
-        } else if (browser.equals(BROWSER.chrome)) {
+        }
+        else if (browser.equals(BROWSER.chrome)) {
             driver = new ChromeDriver();
             driver.get(BASE_URL);
         }

@@ -1,4 +1,4 @@
-package com.thoughtworks.webanalyticsautomation.common;
+package test.java.com.thoughtworks.webanalyticsautomation.common;
 
 /**
  * Created by: Anand Bagmar
@@ -11,6 +11,7 @@ package com.thoughtworks.webanalyticsautomation.common;
 
 import com.thoughtworks.webanalyticsautomation.Engine;
 import com.thoughtworks.webanalyticsautomation.Result;
+import com.thoughtworks.webanalyticsautomation.common.Utils;
 import com.thoughtworks.webanalyticsautomation.inputdata.InputFileType;
 import com.thoughtworks.webanalyticsautomation.plugins.WebAnalyticTool;
 import org.apache.log4j.Logger;
@@ -21,8 +22,8 @@ public class TestBase {
     protected WebAnalyticTool webAnalyticTool;
     protected final InputFileType inputFileType = InputFileType.XML;
     protected boolean keepLoadedFileInMemory = true;
-    protected String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[] {"resources", "log4j.properties"});
-    protected String inputDataFileName = Utils.getAbsolutePath(new String[] {"src", "sampledata", "TestData.xml"});
+    protected String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[] {"src", "main", "resources", "log4j.properties"});
+    protected String inputDataFileName = Utils.getAbsolutePath(new String[] {"src", "test", "sampledata", "TestData.xml"});
 
     protected void logVerificationErrors(Result verificationResult) {
         logger.info("Verification ERRORS:");

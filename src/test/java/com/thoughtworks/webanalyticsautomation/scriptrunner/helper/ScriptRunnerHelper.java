@@ -1,4 +1,4 @@
-package com.thoughtworks.webanalyticsautomation.scriptrunner.helper;
+package test.java.com.thoughtworks.webanalyticsautomation.scriptrunner.helper;
 
 import com.thoughtworks.webanalyticsautomation.common.BROWSER;
 import org.apache.log4j.Logger;

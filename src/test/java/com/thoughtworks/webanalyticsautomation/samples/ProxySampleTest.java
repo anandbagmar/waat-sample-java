@@ -1,28 +1,26 @@
-package com.thoughtworks.webanalyticsautomation.samples;
+package test.java.com.thoughtworks.webanalyticsautomation.samples;
 
 import com.thoughtworks.webanalyticsautomation.Controller;
 import com.thoughtworks.webanalyticsautomation.Engine;
 import com.thoughtworks.webanalyticsautomation.Result;
 import com.thoughtworks.webanalyticsautomation.Status;
 import com.thoughtworks.webanalyticsautomation.common.BROWSER;
-import com.thoughtworks.webanalyticsautomation.common.TestBase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import test.java.com.thoughtworks.webanalyticsautomation.common.TestBase;
 import com.thoughtworks.webanalyticsautomation.common.Utils;
 import com.thoughtworks.webanalyticsautomation.inputdata.InputFileType;
 import com.thoughtworks.webanalyticsautomation.plugins.WebAnalyticTool;
-import com.thoughtworks.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
+import test.java.com.thoughtworks.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
 import static com.thoughtworks.webanalyticsautomation.Controller.getInstance;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-
 
 /**
  * Created by: Anand Bagmar
@@ -39,8 +37,8 @@ public class ProxySampleTest extends TestBase {
     private WebAnalyticTool webAnalyticTool = WebAnalyticTool.PROXY;
     private InputFileType inputFileType = InputFileType.XML;
     private boolean keepLoadedFileInMemory = true;
-    private String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[] {"resources", "log4j.properties"});
-    private String inputDataFileName = Utils.getAbsolutePath(new String[] {"src", "sampledata", "TestData.xml"});
+    private String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[] {"src", "main", "resources", "log4j.properties"});
+    private String inputDataFileName = Utils.getAbsolutePath(new String[] {"src", "test", "sampledata", "TestData.xml"});
     private String actionName = "OpenWAATArticleOnBlog_Proxy";
     private WebDriverScriptRunnerHelper webDriverScriptRunnerHelper;
     private WebDriver driverInstance;
@@ -69,11 +67,11 @@ public class ProxySampleTest extends TestBase {
         logger.info("Verify result");
         Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, urlPatterns, minimumNumberOfPackets);
 
-        assertNotNull(verificationResult.getVerificationStatus(), "Verification status should NOT be NULL");
-        assertNotNull(verificationResult.getListOfErrors(), "Failure details should NOT be NULL");
+        Assert.assertNotNull("Verification status should NOT be NULL", verificationResult.getVerificationStatus());
+        Assert.assertNotNull("Failure details should NOT be NULL", verificationResult.getListOfErrors());
         logVerificationErrors(verificationResult);
-        assertEquals(verificationResult.getVerificationStatus(), Status.PASS, "Verification status should be PASS");
-        assertEquals(verificationResult.getListOfErrors().size(), 0, "Failure details should be empty");
+        Assert.assertEquals("Verification status should be PASS", Status.PASS, verificationResult.getVerificationStatus());
+        Assert.assertEquals("Failure details should be empty", 0, verificationResult.getListOfErrors().size());
     }
 
     private void startWebDriver(BROWSER browser, String baseURL, Proxy seProxy) {
@@ -82,7 +80,12 @@ public class ProxySampleTest extends TestBase {
         driverInstance = (WebDriver) webDriverScriptRunnerHelper.getDriverInstance();
     }
 
-    @AfterMethod
+    @Before
+    public void setup () {
+        Controller.reset();
+    }
+
+    @After
     public void tearDown() throws Exception {
         if (engine!=null) {
             engine.disableWebAnalyticsTesting();

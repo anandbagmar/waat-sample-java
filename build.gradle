@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile files('lib/WAAT.jar')
+    compile files('lib/WAAT-v2.0_BETA.jar')
     compile 'commons-collections:commons-collections:3.2.2'
     compile 'commons-lang:commons-lang:2.6'
     compile 'log4j:log4j:1.2.17'

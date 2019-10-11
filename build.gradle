@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.anandbagmar:WAAT:7e165425d6'
+    implementation 'com.github.anandbagmar:WAAT:v2.0'
     compile 'log4j:log4j:1.2.17'
     compile 'com.thoughtworks.xstream:xstream:1.3.1'
     compile 'net.lightbody.bmp:browsermob-core:2.1.5'

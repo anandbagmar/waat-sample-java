@@ -1,17 +1,18 @@
-package com.thoughtworks.webanalyticsautomation;
+package com.anandbagmar.webanalyticsautomation;
 
-import com.thoughtworks.webanalyticsautomation.common.BROWSER;
-import com.thoughtworks.webanalyticsautomation.common.TestBase;
-import com.thoughtworks.webanalyticsautomation.plugins.WebAnalyticTool;
-import com.thoughtworks.webanalyticsautomation.scriptrunner.WebDriverScriptRunner;
-import com.thoughtworks.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.anandbagmar.webanalyticsautomation.common.BROWSER;
+import com.anandbagmar.webanalyticsautomation.common.TestBase;
+import com.anandbagmar.webanalyticsautomation.plugins.WebAnalyticTool;
+import com.anandbagmar.webanalyticsautomation.scriptrunner.WebDriverScriptRunner;
+import com.anandbagmar.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import static com.thoughtworks.webanalyticsautomation.Controller.getInstance;
+import static com.anandbagmar.webanalyticsautomation.Controller.getInstance;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 
 /**
@@ -19,20 +20,21 @@ import static com.thoughtworks.webanalyticsautomation.Controller.getInstance;
  * Email: abagmar@gmail.com
  * Date: Jan 4, 2011
  * Time: 10:36:28 AM
- *
+ * <p>
  * Copyright 2010 Anand Bagmar (abagmar@gmail.com).  Distributed under the Apache 2.0 License
  */
 
+@Test(singleThreaded = true)
 public class EngineWithWebDriverTest extends TestBase {
     private WebDriverScriptRunnerHelper webDriverScriptRunnerHelper;
     private WebDriver driverInstance;
 
-    @Before
-    public void setup () {
+    @BeforeMethod
+    public void setup() {
         Controller.reset();
     }
 
-    @After
+    @AfterMethod()
     public void tearDown() throws Exception {
         engine.disableWebAnalyticsTesting();
         webDriverScriptRunnerHelper.stopDriver();
@@ -62,12 +64,12 @@ public class EngineWithWebDriverTest extends TestBase {
         startWebDriver(browser, baseURL);
         driverInstance.get(navigateToURL);
 
-        Result verificationResult = engine.verifyWebAnalyticsData (inputDataFileName, actionName, new WebDriverScriptRunner(driverInstance));
+        Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, new WebDriverScriptRunner(driverInstance));
 
-        Assert.assertNotNull("Verification status should NOT be NULL", verificationResult.getVerificationStatus());
-        Assert.assertNotNull("Failure details should NOT be NULL", verificationResult.getListOfErrors());
+        assertNotNull(verificationResult.getVerificationStatus(), "Verification status should NOT be NULL");
+        assertNotNull(verificationResult.getListOfErrors(), "Failure details should NOT be NULL");
         logVerificationErrors(verificationResult);
-        Assert.assertEquals("Verification status should be PASS", Status.FAIL, verificationResult.getVerificationStatus());
+        assertEquals(verificationResult.getVerificationStatus(), Status.FAIL, "Verification status should be FAIL");
     }
 
     private void startWebDriver(BROWSER browser, String baseURL) {

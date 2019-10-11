@@ -1,13 +1,13 @@
-package com.thoughtworks.webanalyticsautomation.samples;
+package com.anandbagmar.webanalyticsautomation.samples;
 
-import com.thoughtworks.webanalyticsautomation.scriptrunner.ScriptRunner;
+import com.anandbagmar.webanalyticsautomation.scriptrunner.ScriptRunner;
 
 /**
  * Created by: Anand Bagmar
  * Email: abagmar@gmail.com
  * Date: Feb 2, 2011
  * Time: 1:24:46 PM
- *
+ * <p>
  * Copyright 2010 Anand Bagmar (abagmar@gmail.com).  Distributed under the Apache 2.0 License
  */
 

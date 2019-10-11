@@ -1,4 +1,4 @@
-package com.thoughtworks.webanalyticsautomation.runUtils;
+package com.anandbagmar.webanalyticsautomation.runUtils;
 
 import org.apache.log4j.Logger;
 
@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
  * Email: abagmar@gmail.com
  * Date: Dec 29, 2010
  * Time: 1:07:03 PM
- *
+ * <p>
  * Copyright 2010 Anand Bagmar (abagmar@gmail.com).  Distributed under the Apache 2.0 License
  */
 
@@ -25,7 +25,7 @@ public class UIDriverThreadRunner implements Runnable {
         this.logger = logger;
     }
 
-    public void runInThread (String command) {
+    public void runInThread(String command) {
         this.command = command;
         Thread myThread = new Thread(this);
         myThread.start();
@@ -44,14 +44,13 @@ public class UIDriverThreadRunner implements Runnable {
             while ((line = br.readLine()) != null) {
                 logger.debug(line);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void stop() {
-        logger.info ("Calling stop in the thread");
+        logger.info("Calling stop in the thread");
         process.destroy();
     }
 }

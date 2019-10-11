@@ -3,23 +3,28 @@ version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    compile files('lib/WAAT-v2.0_BETA.jar')
-    compile 'commons-collections:commons-collections:3.2.2'
-    compile 'commons-lang:commons-lang:2.6'
+    implementation 'com.github.anandbagmar:WAAT:7e165425d6'
     compile 'log4j:log4j:1.2.17'
-    compile 'junit:junit:4.11'
     compile 'com.thoughtworks.xstream:xstream:1.3.1'
-    compile 'net.lightbody.bmp:browsermob-core:2.1.2'
-    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
-    compile 'org.apache.velocity:velocity:1.7'
-    compile 'velocity-tools:velocity-tools:2.0-beta1'
+    compile 'net.lightbody.bmp:browsermob-core:2.1.5'
+    compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    compile group: 'io.appium', name: 'java-client', version: '7.0.0'
+    compile 'io.github.bonigarcia:webdrivermanager:3.7.1'
+    compile 'org.testng:testng:6.14.3'
+}
+
+test {
+    // enable TestNG support (default is JUnit)
+    useTestNG()
 }

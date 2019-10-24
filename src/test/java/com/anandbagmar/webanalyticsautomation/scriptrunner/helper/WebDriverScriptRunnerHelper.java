@@ -110,7 +110,11 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
         if (null != this.driver) {
             driver.close();
         }
-        driver.quit();
+        try {
+            driver.quit();
+        } catch (Exception e) {
+            // quit the driver
+        }
     }
 
     @Override

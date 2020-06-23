@@ -45,6 +45,8 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (null != proxy) {
             chromeOptions.setCapability(CapabilityType.PROXY, proxy);
+            chromeOptions.addArguments("--ignore-ssl-errors=yes");
+            chromeOptions.addArguments("--ignore-certificate-errors");
         }
         driver = new ChromeDriver(chromeOptions);
         driver.get(BASE_URL);

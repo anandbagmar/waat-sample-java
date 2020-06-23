@@ -49,7 +49,7 @@ public class VerifyWebAnalyticsForAndroid extends TestBase {
 
     @Test
     public void captureVerifyAnalyticsDataForAndroidMobile() {
-        String baseURL = "http://essenceoftesting.blogspot.com";
+        String baseURL = "https://essenceoftesting.blogspot.com";
         String navigateToURL = baseURL + "/search/label/waat";
         ArrayList<String> urlPatterns = new ArrayList<String>();
         urlPatterns.add("https://www.google-analytics.com/");

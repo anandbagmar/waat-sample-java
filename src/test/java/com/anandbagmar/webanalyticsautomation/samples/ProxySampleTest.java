@@ -48,7 +48,7 @@ public class ProxySampleTest extends TestBase {
     @Test
     public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Firefox() throws
             Exception {
-        String baseURL = "http://essenceoftesting.blogspot.com";
+        String baseURL = "https://essenceoftesting.blogspot.com";
         String navigateToURL = baseURL + "/search/label/waat";
         ArrayList<String> urlPatterns = new ArrayList<String>();
         urlPatterns.add("https://ssl.google-analytics.com/");
@@ -81,7 +81,7 @@ public class ProxySampleTest extends TestBase {
     @Test
     public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Chrome() throws
             Exception {
-        String baseURL = "http://essenceoftesting.blogspot.com";
+        String baseURL = "https://essenceoftesting.blogspot.com";
         String navigateToURL = baseURL + "/search/label/waat";
         ArrayList<String> urlPatterns = new ArrayList<String>();
         urlPatterns.add("https://ssl.google-analytics.com/");

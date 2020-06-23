@@ -30,21 +30,16 @@ import static org.testng.Assert.assertNotNull;
  */
 
 public class OmnitureDebuggerSampleTest extends TestBase {
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
     private Engine engine;
-    private WebAnalyticTool webAnalyticTool = WebAnalyticTool.OMNITURE_DEBUGGER;
-    private InputFileType inputFileType = InputFileType.XML;
-    private boolean keepLoadedFileInMemory = true;
-    private String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
-    private String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "TestData.xml"});
-    private String actionName = "OpenUpcomingPage_OmnitureDebugger_Selenium";
+    private final WebAnalyticTool webAnalyticTool = WebAnalyticTool.OMNITURE_DEBUGGER;
+    private final InputFileType inputFileType = InputFileType.XML;
+    private final boolean keepLoadedFileInMemory = true;
+    private final String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
+    private final String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "TestData.xml"});
+    private final String actionName = "OpenUpcomingPage_OmnitureDebugger_Selenium";
     private WebDriverScriptRunnerHelper webDriverScriptRunnerHelper;
     private WebDriver driverInstance;
-
-//    @Test
-//    public void captureAndVerifyDataReportedToWebAnalytics_OmnitureDebugger_Selenium_IE() throws Exception {
-//        captureAndVerifyDataReportedToWebAnalytics_Omniture_Selenium(BROWSER.iehta);
-//    }
 
     @Test
     public void captureAndVerifyDataReportedToWebAnalytics_OmnitureDebugger_Selenium_Firefox() throws Exception {
@@ -63,7 +58,7 @@ public class OmnitureDebuggerSampleTest extends TestBase {
         engine = Controller.getInstance(webAnalyticTool, inputFileType, keepLoadedFileInMemory, log4jPropertiesAbsoluteFilePath);
         engine.enableWebAnalyticsTesting(actionName);
 
-        startSeleniumDriver(browser, baseURL);
+        startWebDriver(browser, baseURL);
         driverInstance.get(navigateToURL);
 
         Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, new WebDriverScriptRunner(driverInstance));
@@ -72,12 +67,6 @@ public class OmnitureDebuggerSampleTest extends TestBase {
         assertNotNull(verificationResult.getListOfErrors(), "Failure details should NOT be NULL");
         logVerificationErrors(verificationResult);
         Assert.assertEquals(verificationResult.getVerificationStatus(), Status.FAIL, "Verification status should be FAIL");
-    }
-
-    private void startSeleniumDriver(BROWSER browser, String baseURL) {
-        webDriverScriptRunnerHelper = new WebDriverScriptRunnerHelper(logger, browser, baseURL);
-        webDriverScriptRunnerHelper.startDriver();
-        driverInstance = (WebDriver) webDriverScriptRunnerHelper.getDriverInstance();
     }
 
     @BeforeMethod

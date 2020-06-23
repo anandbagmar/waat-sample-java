@@ -15,26 +15,20 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class CustomTestListener implements ITestListener {
-    private static String WAAT_START_LOG_MESSAGE = "\n\n" +
-            "------------------------------------------------------------------------------------\n" +
-            "----------------------------------" +
-            " Start WAAT Log " +
-            "----------------------------------\n" +
-            "------------------------------------------------------------------------------------\n";
 
-    private static String WAAT_END_LOG_MESSAGE = "\n\n" +
+    private static final String WAAT_END_LOG_MESSAGE = "\n\n" +
             "------------------------------------------------------------------------------------\n" +
             "-----------------------------------" +
             " End WAAT Log " +
             "-----------------------------------\n" +
             "------------------------------------------------------------------------------------\n";
 
-    private static String WAAT_TEST_END_LOG_MESSAGE = "\n\n" +
+    private static final String WAAT_TEST_END_LOG_MESSAGE = "\n\n" +
             "-----------------------------------" +
             " TESTNAME " +
             "-----------------------------------\n";
 
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
 
     public void onTestStart(ITestResult iTestResult) {
         String testName = "Test name: " + iTestResult.getName();
@@ -61,6 +55,12 @@ public class CustomTestListener implements ITestListener {
     }
 
     public void onStart(ITestContext iTestContext) {
+        String WAAT_START_LOG_MESSAGE = "\n\n" +
+                                                "------------------------------------------------------------------------------------\n" +
+                                                "----------------------------------" +
+                                                " Start WAAT Log " +
+                                                "----------------------------------\n" +
+                                                "------------------------------------------------------------------------------------\n";
         logger.info(WAAT_START_LOG_MESSAGE);
     }
 

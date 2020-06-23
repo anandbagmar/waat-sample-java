@@ -31,14 +31,14 @@ public class VerifyWebAnalyticsForAndroid extends TestBase {
 
 
     protected static AppiumDriver driverAndroid;
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
     private Engine engine;
-    private WebAnalyticTool webAnalyticTool = WebAnalyticTool.PROXY;
-    private InputFileType inputFileType = InputFileType.XML;
-    private boolean keepLoadedFileInMemory = true;
-    private String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
-    private String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "MobileTestData.xml"});
-    private String actionName = "OpenWAATArticleOnBlog_Proxy";
+    private final WebAnalyticTool webAnalyticTool = WebAnalyticTool.PROXY;
+    private final InputFileType inputFileType = InputFileType.XML;
+    private final boolean keepLoadedFileInMemory = true;
+    private final String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
+    private final String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "MobileTestData.xml"});
+    private final String actionName = "OpenWAATArticleOnBlog_Proxy";
     private MobileDriverScriptRunnerHelper mobileDriverScirptRunnerHelper;
 
 

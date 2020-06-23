@@ -26,8 +26,6 @@ import static org.testng.Assert.assertNotNull;
 
 @Test(singleThreaded = true)
 public class EngineWithWebDriverTest extends TestBase {
-    private WebDriverScriptRunnerHelper webDriverScriptRunnerHelper;
-    private WebDriver driverInstance;
 
     @BeforeMethod
     public void setup() {
@@ -40,17 +38,8 @@ public class EngineWithWebDriverTest extends TestBase {
         webDriverScriptRunnerHelper.stopDriver();
     }
 
-//    @Test
-//    public void captureAndVerifyDataReportedToWebAnalytics_WebDriver_IE() throws Exception {
-//        captureAndVerifyDataReportedToWebAnalytics_WebDriver(BROWSER.iehta);
-//    }
-
     @Test
     public void captureAndVerifyDataReportedToWebAnalytics_WebDriver_Firefox() throws Exception {
-        captureAndVerifyDataReportedToWebAnalytics_WebDriver(BROWSER.firefox);
-    }
-
-    private void captureAndVerifyDataReportedToWebAnalytics_WebDriver(BROWSER browser) {
         String actionName = "OpenUpcomingPage_OmnitureDebugger_WebDriver";
         WebAnalyticTool webAnalyticTool = WebAnalyticTool.OMNITURE_DEBUGGER;
 
@@ -61,7 +50,7 @@ public class EngineWithWebDriverTest extends TestBase {
         engine = getInstance(webAnalyticTool, inputFileType, keepLoadedFileInMemory, log4jPropertiesAbsoluteFilePath);
         engine.enableWebAnalyticsTesting(actionName);
 
-        startWebDriver(browser, baseURL);
+        startWebDriver(BROWSER.firefox, baseURL);
         driverInstance.get(navigateToURL);
 
         Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, new WebDriverScriptRunner(driverInstance));
@@ -72,9 +61,4 @@ public class EngineWithWebDriverTest extends TestBase {
         assertEquals(verificationResult.getVerificationStatus(), Status.FAIL, "Verification status should be FAIL");
     }
 
-    private void startWebDriver(BROWSER browser, String baseURL) {
-        webDriverScriptRunnerHelper = new WebDriverScriptRunnerHelper(logger, browser, baseURL);
-        webDriverScriptRunnerHelper.startDriver();
-        driverInstance = (WebDriver) webDriverScriptRunnerHelper.getDriverInstance();
-    }
 }

@@ -9,10 +9,8 @@ import com.anandbagmar.webanalyticsautomation.common.TestBase;
 import com.anandbagmar.webanalyticsautomation.common.Utils;
 import com.anandbagmar.webanalyticsautomation.inputdata.InputFileType;
 import com.anandbagmar.webanalyticsautomation.plugins.WebAnalyticTool;
-import com.anandbagmar.webanalyticsautomation.scriptrunner.helper.WebDriverScriptRunnerHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,20 +32,17 @@ import static org.testng.Assert.assertNotNull;
  */
 
 public class ProxySampleTest extends TestBase {
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
     private Engine engine;
-    private WebAnalyticTool webAnalyticTool = WebAnalyticTool.PROXY;
-    private InputFileType inputFileType = InputFileType.XML;
-    private boolean keepLoadedFileInMemory = true;
-    private String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
-    private String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "TestData.xml"});
-    private String actionName = "OpenWAATArticleOnBlog_Proxy";
-    private WebDriverScriptRunnerHelper webDriverScriptRunnerHelper;
-    private WebDriver driverInstance;
+    private final WebAnalyticTool webAnalyticTool = WebAnalyticTool.PROXY;
+    private final InputFileType inputFileType = InputFileType.XML;
+    private final boolean keepLoadedFileInMemory = true;
+    private final String log4jPropertiesAbsoluteFilePath = Utils.getAbsolutePath(new String[]{"resources", "log4j.properties"});
+    private final String inputDataFileName = Utils.getAbsolutePath(new String[]{"src", "test", "sampledata", "TestData.xml"});
+    private final String actionName = "OpenWAATArticleOnBlog_Proxy";
 
     @Test
-    public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Firefox() throws
-            Exception {
+    public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Firefox() {
         String baseURL = "https://essenceoftesting.blogspot.com";
         String navigateToURL = baseURL + "/search/label/waat";
         ArrayList<String> urlPatterns = new ArrayList<String>();
@@ -63,10 +58,6 @@ public class ProxySampleTest extends TestBase {
         engine.enableWebAnalyticsTesting(actionName);
         logger.info("Do action");
         driverInstance.get(navigateToURL);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-        }
 
         logger.info("Verify result");
         Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, urlPatterns, minimumNumberOfPackets);
@@ -79,8 +70,7 @@ public class ProxySampleTest extends TestBase {
     }
 
     @Test
-    public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Chrome() throws
-            Exception {
+    public void captureAndVerifyDataReportedToWebAnalytics_Proxy_GoogleAnalytics_WebDriver_Chrome() {
         String baseURL = "https://essenceoftesting.blogspot.com";
         String navigateToURL = baseURL + "/search/label/waat";
         ArrayList<String> urlPatterns = new ArrayList<String>();
@@ -96,10 +86,6 @@ public class ProxySampleTest extends TestBase {
         engine.enableWebAnalyticsTesting(actionName);
         logger.info("Do action");
         driverInstance.get(navigateToURL);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-        }
 
         logger.info("Verify result");
         Result verificationResult = engine.verifyWebAnalyticsData(inputDataFileName, actionName, urlPatterns, minimumNumberOfPackets);
@@ -109,12 +95,6 @@ public class ProxySampleTest extends TestBase {
         logVerificationErrors(verificationResult);
         assertEquals(verificationResult.getVerificationStatus(), Status.PASS, "Verification status should be PASS");
         assertEquals(verificationResult.getListOfErrors().size(), 0, "Failure details should be empty");
-    }
-
-    private void startWebDriver(BROWSER browser, String baseURL, Proxy seProxy) {
-        webDriverScriptRunnerHelper = new WebDriverScriptRunnerHelper(logger, browser, baseURL);
-        webDriverScriptRunnerHelper.startDriverUsingProxy(seProxy);
-        driverInstance = (WebDriver) webDriverScriptRunnerHelper.getDriverInstance();
     }
 
     @BeforeMethod
@@ -127,8 +107,6 @@ public class ProxySampleTest extends TestBase {
         if (engine != null) {
             engine.disableWebAnalyticsTesting();
         }
-        if (webDriverScriptRunnerHelper != null) {
-            webDriverScriptRunnerHelper.stopDriver();
-        }
+        webDriverScriptRunnerHelper.stopDriver();
     }
 }

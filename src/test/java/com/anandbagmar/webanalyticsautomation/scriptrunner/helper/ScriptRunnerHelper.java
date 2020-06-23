@@ -24,8 +24,6 @@ public abstract class ScriptRunnerHelper {
         BASE_URL = baseURL;
     }
 
-    public abstract void startDriver();
-
     public abstract void startDriverUsingProxy(Proxy proxy);
 
     public abstract void stopDriver();

@@ -21,7 +21,7 @@ import static org.testng.Assert.assertNotNull;
  */
 
 public class TestDataTest extends TestBase {
-    private String actionName = "OpenUpcomingPage_OmnitureDebugger_Selenium";
+    private final String actionName = "OpenUpcomingPage_OmnitureDebugger_Selenium";
 
     @Test
     public void loadOmnitureDataInMemoryTest() {

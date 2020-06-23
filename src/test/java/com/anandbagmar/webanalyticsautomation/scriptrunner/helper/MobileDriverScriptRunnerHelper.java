@@ -33,31 +33,14 @@ public class MobileDriverScriptRunnerHelper extends ScriptRunnerHelper {
         super(logger, browser, baseURL);
     }
 
-    @Override
-    public void startDriver() {
-    }
-
     private void instantiateChromeDriver(DesiredCapabilities capabilities) {
         driverAndroid = new AppiumDriver(service.getUrl(), capabilities);
-//        driverAndroid =new AndroidDriver<>(service.getUrl(), capabilities);
         driverAndroid.get(BASE_URL);
     }
 
     @Override
     public void startDriverUsingProxy(Proxy proxy) {
-        System.setProperty("webdriver.chrome.driver", WebDriverUtils.getPathForChromeDriver());
-//
-//        String mobilePropertyFilePath = Utils.getAbsolutePath(new String[] {"resources","mobileSetUp.properties"});
-//        try {
-//
-//            input= new FileInputStream(mobilePropertyFilePath);
-//            prop.load(input);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+        WebDriverUtils.getPathForChromeDriver();
         logger.info("Initializing the appium server at port 7000");
         serBuilder = new AppiumServiceBuilder().withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")).usingPort(7000);
         service = serBuilder.build();
@@ -101,6 +84,4 @@ public class MobileDriverScriptRunnerHelper extends ScriptRunnerHelper {
         }
         return driverAndroid;
     }
-
-
 }

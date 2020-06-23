@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class WebDriverScriptRunner implements ScriptRunner {
     private WebDriver webDriverInstance;
-    private Logger logger = Logger.getLogger(getClass());
+    private final Logger logger = Logger.getLogger(getClass());
 
     public WebDriverScriptRunner(WebDriver webDriverInstance) {
         this.webDriverInstance = webDriverInstance;

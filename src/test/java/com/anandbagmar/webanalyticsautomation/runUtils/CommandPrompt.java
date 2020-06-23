@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandPrompt {
-    private Logger logger = Logger.getLogger(WebDriverUtils.class);
+    private final Logger logger = Logger.getLogger(WebDriverUtils.class);
     Process p;
     ProcessBuilder builder;
 

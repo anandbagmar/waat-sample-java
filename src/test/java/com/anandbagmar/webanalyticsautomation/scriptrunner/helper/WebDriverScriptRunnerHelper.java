@@ -1,6 +1,7 @@
 package com.anandbagmar.webanalyticsautomation.scriptrunner.helper;
 
 import com.anandbagmar.webanalyticsautomation.common.BROWSER;
+import com.anandbagmar.webanalyticsautomation.runUtils.WebDriverUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Proxy;
@@ -33,15 +34,8 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
         super(logger, browser, baseURL);
     }
 
-    @Override
-    public void startDriver() {
-        startDriverUsingProxy(null);
-    }
-
     private void instantiateChromeDriver(Proxy proxy) {
-        WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", WebDriverManager.chromedriver().getBinaryPath());
-
+        WebDriverUtils.getPathForChromeDriver();
         ChromeOptions chromeOptions = new ChromeOptions();
         if (null != proxy) {
             chromeOptions.setCapability(CapabilityType.PROXY, proxy);
@@ -53,10 +47,7 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
     }
 
     private void instantiateIEDriver(String os, Proxy proxy) {
-        WebDriverManager.iedriver().setup();
-        if (!os.contains("win")) {
-            throw new SkipException("Skipping this test as Internet Explorer browser is NOT available on " + os);
-        }
+        WebDriverUtils.instantiateIEDriver(os);
         InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
         if (null != proxy) {
             internetExplorerOptions.setProxy(proxy);
@@ -66,10 +57,7 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
     }
 
     private void instantiateEdgeDriver(String os, Proxy proxy) {
-        WebDriverManager.edgedriver().setup();
-        if (!os.contains("win")) {
-            throw new SkipException("Skipping this test as Internet Explorer browser is NOT available on " + os);
-        }
+        WebDriverUtils.instantiateEdgeDriver(os);
         EdgeOptions edgeOptions = new EdgeOptions();
         if (null != proxy) {
             edgeOptions.setProxy(proxy);
@@ -79,11 +67,12 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
     }
 
     private void instantiateFireFoxDriver(Proxy proxy) {
-        WebDriverManager.firefoxdriver().setup();
-        System.setProperty("webdriver.gecko.driver", WebDriverManager.firefoxdriver().getBinaryPath());
+        WebDriverUtils.getPathForFirefoxDriver();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         if (null != proxy) {
-//            firefoxOptions.setCapability(CapabilityType.PROXY, proxy);
+            firefoxOptions.setCapability(CapabilityType.PROXY, proxy);
+            firefoxOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+            firefoxOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         }
 
         driver = new FirefoxDriver(firefoxOptions);
@@ -109,9 +98,9 @@ public class WebDriverScriptRunnerHelper extends ScriptRunnerHelper {
 
     @Override
     public void stopDriver() {
-        if (null != this.driver) {
-            driver.close();
-        }
+//        if (null != this.driver) {
+//            driver.close();
+//        }
         try {
             driver.quit();
         } catch (Exception e) {
